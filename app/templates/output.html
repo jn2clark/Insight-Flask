@@ -1,0 +1,109 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>#Holla-A-Hashtag!</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/cover.css" rel="stylesheet">
+
+
+  </head>
+
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 id="hollatitle" class="masthead-brand">#Holla-A-Hashtag
+                <p id="protip"> Developed by <a href="https://www.linkedin.com/in/jessenclark" target="_blank">Jesse Clark</a></p>
+              </h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <!-- <li class="active"><a href="#">Home</a></li>
+                  <li><a href="#">Features</a></li>
+                  <li><a href="#">Contact</a></li> -->
+                  <!-- <p>Developed by <a href="https://www.linkedin.com/in/jessenclark" target="_blank">Jesse Clark</a></p> -->
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <div class="container">
+            <h1 id="coverhead" class="cover-heading">&nbsp &nbsp Start exploring.</h1>
+            <p id="protip" class="lead">&nbsp &nbsp  Pro-tip: Try your search with a #</p>
+            <br </br>
+           
+            
+
+            <div class = "container">
+              <form  action="/output" method="GET">
+                <div class="form-group">
+                  <!-- <label for="ID" id='search_text'>Term, topic or hashtag:</label> -->
+                  <input type="text" id="ID" name='ID' placeholder="{{ID.replace('+',' ')}}">
+                </div>
+                <div>
+                  <br </br>
+                 
+                  <button id="hollabutton" type="submit" class="btn btn-default btn-lg">#Holla!</button>
+
+                </div>
+
+              </form>
+
+            </div>
+
+          </div>
+          <br </br>
+          <div class="container">
+          {% for result in results %}
+
+          <p><a class="lead" id = "rechtag" href={{result['web']}} target={{new_tab}}>&nbsp{{result['rank']}}&nbsp{{result['name']}}</a></p>
+          <p>&nbsp{{result['tweets']}}</p>
+
+          {% endfor %}
+          
+          </div>
+        <!-- <div class="container">
+          {% for city in cities %}
+
+          <p><a class="lead" href={{city['web']}}>{{city['name2']}}</p>
+
+          {% endfor %}
+          
+        </div> -->
+        </div>
+
+          <!-- <div class="mastfoot">
+            <div class="inner">
+              <p>Developed by <a href="https://www.linkedin.com/in/jessenclark">Jesse Clark</a></p>
+            </div>
+          </div>
+ -->
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/static/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
