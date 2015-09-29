@@ -41,6 +41,14 @@ a:hover {
   text-align: center;
 }
 
+#about {
+  font-size: 15px;
+  color: white;
+  font-weight: 300;
+  outline: 0;
+  text-align: left;
+}
+
 #search_text {
   font-size: 30px;
   color: white;
@@ -97,9 +105,11 @@ body {
   display: table-cell;
   vertical-align: top;
 }
+
 .cover-container {
-  margin-right: auto; 
-}
+  /* margin-left: auto; */
+  text-align: center; 
+} 
 
 /* Padding for spacing */
 .inner {

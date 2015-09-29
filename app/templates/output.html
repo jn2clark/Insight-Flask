@@ -74,8 +74,8 @@
           <div class="container">
           {% for result in results %}
 
-          <p><a class="lead" id = "rechtag" href={{result['web']}} target={{new_tab}}>&nbsp{{result['rank']}}&nbsp{{result['name']}}</a></p>
-          <p>&nbsp{{result['tweets']}}</p>
+          <p><a class="lead" id = "rechtag" href={{result['search']}} target={{new_tab}}>&nbsp{{result['rank']}}&nbsp{{result['name']}}</a></p>
+          <p><a href={{result['web']}} target="_blank">&nbsp{{result['tweets']}}</a></p>
 
           {% endfor %}
           

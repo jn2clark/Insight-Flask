@@ -12,6 +12,7 @@ import cPickle
 from random import shuffle
 import gensim
 from random import randint
+import os
 
 def get_htags_tweets(model,hashtable,sterm):
     # query the model
@@ -21,9 +22,13 @@ def get_htags_tweets(model,hashtable,sterm):
     # generate search urls  
     the_urls = hashtag_url_gen(htags)
     
+    # generate holla search urls
+    the_searches = output_url_gen(htags)
+    
     # get the tweets - debugging here
     print(sterm)
     print(htags)
+    #print(the_searches)
     # get a random tweet to display from those available
     tweets = [hashtable[key][randint(0,len(hashtable[key])-1)][0] for key in htags]
     
@@ -32,9 +37,9 @@ def get_htags_tweets(model,hashtable,sterm):
     # no make a dict to hold the htags, urls's etc
     val = 0
     htag_tweets = []
-    for result,url,word,tweet in zip(htags,the_urls,words,tweets):
+    for searches,result,url,word,tweet in zip(the_searches,htags,the_urls,words,tweets):
         val+=1
-        htag_tweets.append(dict(name=result, web=url,name2 = word,tweets=tweet,orig=sterm,rank=val))
+        htag_tweets.append(dict(name=result, web=url,search = searches,name2 = word,tweets=tweet,orig=sterm,rank=val))
     
     return htag_tweets
 
@@ -44,10 +49,10 @@ def get_suggestions():
             'bikes','#datascience','art','San Francisco','#coffee','climate change','#running']
 
 def load_model(fname):
+    
     print(fname)
     print("\n Loading model and hashtable (make sure they match!)...")
     # name of the model to use
-
     # this one is pretty good
     modelname = 'USmodel-n500-mc15-w10-i10-d5Rand-mem'
                 
@@ -55,18 +60,14 @@ def load_model(fname):
 
     #modelname = 'USmodel-n500-mc50-w10-i10-ng5-d10Rand-mem'
     #modelname = 'USmodel-n500-mc15-w10-i10-ng5-d10Rand-mem'
-    #hashtablename = fname+'USAhtable-short-d10.pkl'#'USAhtable-short.pkl'
-    
-    #modelname = 'USmodel-n500-mc15-w10-i10-ng5-d10Rand-mem'
-
-    
+    #hashtablename = fname+'USAhtable-short-d10.pkl'#'USAhtable-short.pkl'    
+    #modelname = 'USmodel-n500-mc15-w10-i10-ng5-d10Rand-mem'    
     # this looks pretty god too
     #modelname = 'USmodel-n500-mc15-w10-i10-ng5-d10Rand-mem'
 
     model = gensim.models.Word2Vec.load(fname+modelname)
     # save memory
     model.init_sims(replace=True)
-    
    
     hashtable = load_object(hashtablename)
     print("\n Finished...")
@@ -86,6 +87,12 @@ def hashtag_url_gen(hashtags):
     urls = [base_url+hashtag[1:]+not_base for hashtag in hashtags]
     return urls
 
+def output_url_gen(hashtags):
+    # generate a search url for twitter based on the returned hashtags
+    base_url = 'output?ID=%23'#'https://twitter.com/hashtag/'
+    urls = [base_url+hashtag[1:] for hashtag in hashtags]
+    return urls
+
 
 def load_object(fname):
     # load a pickled object
@@ -93,3 +100,17 @@ def load_object(fname):
     with open(fname, 'rb') as fid:
         clf = cPickle.load(fid)    
     return clf
+    
+def get_data_dir(platform,dirc):
+    # setup the global path to the model
+    #dirc = os.path.dirname(__file__)
+
+    # osx
+    if platform[0] == 'd':
+        fname = os.path.join(dirc, 'data/')
+        print('\n OSX \n')
+    # linux AWS
+    if platform[0] == 'l':
+        fname="/home/ubuntu/data/"
+        print('\n linux \n')
+    return fname

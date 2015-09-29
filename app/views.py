@@ -2,13 +2,14 @@ from flask import render_template, request
 from app import app
 import gensim
 from AppFunctions import (get_words_hashtags,hashtag_url_gen,
-                          load_object,load_model, get_suggestions,get_htags_tweets)
+                          load_object,load_model, get_suggestions,
+                          get_htags_tweets, get_data_dir)
 import os
 from random import randint
+from sys import platform as _platform
 
 # setup the global path to the model
-dirc = os.path.dirname(__file__)
-fname = os.path.join(dirc, 'data/')
+fname = get_data_dir(_platform,os.path.dirname(__file__))
 # load the model and htbale
 model,hashtable = load_model(fname)
 # get the suggestion to use when no search is entered
@@ -56,7 +57,8 @@ def results_output():
                 suggestion = '%23'+suggestion[1:]
             # take care of whitespace
             suggestion = suggestion.replace(' ','+')  
-            results.append(dict(name=the_result, web='output?ID='+suggestion,name2 = ' ',tweets = ' ',orig = ' '))
+            results.append(dict(name=the_result, web='output?ID='+suggestion,search ='output?ID='+suggestion,name2 = ' ',tweets = ' ',orig = ' '))
+            # open a new tab
             new_tab = '"_self"'
   
     else:
@@ -70,10 +72,11 @@ def results_output():
         # take care of whitespace
         suggestion = suggestion.replace(' ','+')
           
-        results.append(dict(name=the_result, web='output?ID='+suggestion,name2 = ' ',tweets = ' ',orig = ' '))
+        results.append(dict(name=the_result, web='output?ID='+suggestion,search ='output?ID='+suggestion,name2 = ' ',tweets = ' ',orig = ' '))
         new_tab = '"_self"'
       
-    # return the results, tab_opening and original term
-    return render_template("output.html",  results = results,ID=str(orig_sterm),new_tab = new_tab)#,the_urls = the_urls)
+    # return the results, tab_opening and original term (for the seach box)
+    print(results)
+    return render_template("output.html",  results = results,ID=str(orig_sterm),new_tab = new_tab)
       
   
