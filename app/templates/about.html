@@ -30,9 +30,9 @@
 
           <div class="masthead clearfix">
             <div class="inner">
-              <h3 id="hollatitle" class="masthead-brand"> <a href="/" > #Holla-A-Hashtag</a>
+              <h3 id="hollatitle" class="masthead-brand">#Holla-A-Hashtag
                 <p id="protip"> Developed by <a href="https://www.linkedin.com/in/jessenclark" target="_blank">Jesse Clark</a></p>
-                <p id="protip"><a href="https://speakerdeck.com/jessenclark/week4" target="_blank">About</a></p>
+                <p id="protip"><a href="/input" >Slides</a></p>
               </h3>
               <nav>
                 <ul class="nav masthead-nav">
@@ -46,8 +46,8 @@
           </div>
 
           <div class="container">
-            <h1 id="coverhead" class="cover-heading">&nbsp &nbsp Start exploring.</h1>
-            <p id="protip" class="lead">&nbsp &nbsp &nbsp Enter a topic or # to start searching Twitter. </p> 
+            <h1 id="coverhead" class="cover-heading">&nbsp &nbsp About.</h1>
+            <p id="protip" class="lead">&nbsp &nbsp  Pro-tip: Try your search with a #</p> 
             <br </br>
             
             
@@ -74,8 +74,8 @@
           <div class="container">
           {% for city in cities %}
 
-          <p><a class="lead" id = "rechtag" href={{city['web']}} target={{new_tab}}>&nbsp &nbsp {{city['rank']}}&nbsp{{city['name']}}</a></p>
-          <p>&nbsp &nbsp{{' '.join(city['tweets'])}}</p>
+          <p><a class="lead" id = "rechtag" href={{city['web']}} target={{new_tab}}>{{city['rank']}}&nbsp{{city['name']}}</a></p>
+          <p>{{' '.join(city['tweets'])}}</p>
 
           {% endfor %}
           

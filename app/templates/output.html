@@ -30,9 +30,9 @@
 
           <div class="masthead clearfix">
             <div class="inner">
-              <h3 id="hollatitle" class="masthead-brand">#Holla-A-Hashtag
+              <h3 id="hollatitle" class="masthead-brand"> <a href="/" > #Holla-A-Hashtag</a>
                 <p id="protip"> Developed by <a href="https://www.linkedin.com/in/jessenclark" target="_blank">Jesse Clark</a></p>
-                <p id="protip"><a href="https://speakerdeck.com/jessenclark/week4" target="_blank">Slides</a></p>
+                <p id="protip"><a href="https://speakerdeck.com/jessenclark/week4" target="_blank">About</a></p>
               </h3>
               <nav>
                 <ul class="nav masthead-nav">
@@ -47,6 +47,7 @@
 
           <div class="container">
             <h1 id="coverhead" class="cover-heading">&nbsp &nbsp Start exploring.</h1>
+
             <p id="protip" class="lead">&nbsp &nbsp  Pro-tip: Try your search with a #</p>
             <br </br>
            
@@ -74,8 +75,8 @@
           <div class="container">
           {% for result in results %}
 
-          <p><a class="lead" id = "rechtag" href={{result['search']}} >&nbsp{{result['rank']}}&nbsp{{result['name']}}</a></p>
-          <p><a href={{result['web']}} target="_blank">&nbsp{{result['tweets']}}</a></p>
+          <p><a class="lead" id = "rechtag" href={{result['search']}} > &nbsp &nbsp{{result['rank']}}&nbsp{{result['name']}}</a></p>
+          <p><a href={{result['web']}} target="_blank">&nbsp &nbsp{{result['tweets']}}</a></p>
 
           {% endfor %}
           

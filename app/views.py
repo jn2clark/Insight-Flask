@@ -20,6 +20,11 @@ rand_suggestions = get_suggestions()
 def index():
     user = '' # fake user
     return render_template("index.html",title = 'Home',user = user)
+    
+@app.route('/about')
+def about():
+    user = '' # fake user
+    return render_template("about.html",title = 'Home',user = user)
 
 @app.route('/output')
 def results_output():
@@ -50,7 +55,7 @@ def results_output():
             # help the user if the field was empty
             suggestion = rand_suggestions[randint(0,len(rand_suggestions)-1)]
             # throw back an error to help the user
-            the_result = 'You are too original! This has not been mentioned on twitter. Try another term like '+suggestion 
+            the_result = 'You are too original! Try another term like '+suggestion  #This has not been mentioned on twitter. 
   
             # take care of the # in the string
             if suggestion[0] == '#':
