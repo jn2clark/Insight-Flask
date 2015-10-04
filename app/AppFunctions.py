@@ -53,19 +53,9 @@ def load_model(fname):
     print(fname)
     print("\n Loading model and hashtable (make sure they match!)...")
     # name of the model to use
-    # this one is pretty good
-    #modelname = 'USmodel-n500-mc15-w10-i10-d5Rand-mem'
-    #hashtablename = fname+'USAhtable-short-d5.pkl'
-    modelname = 'USmodel-n200-mc15-w10-i10-ng0-d26Rand'#'USmodel-n500-mc15-w10-i10-ng0-d26Rand'
+    modelname = 'USmodel-n200-mc15-w10-i10-ng0-d26Rand'
     hashtablename = fname+'USAhtable-short-d26.pkl'
-
-    #modelname = 'USmodel-n500-mc50-w10-i10-ng5-d10Rand-mem'
-    #modelname = 'USmodel-n500-mc15-w10-i10-ng5-d10Rand-mem'
-    #hashtablename = fname+'USAhtable-short-d10.pkl'#'USAhtable-short.pkl'    
-    #modelname = 'USmodel-n500-mc15-w10-i10-ng5-d10Rand-mem'    
-    # this looks pretty god too
-    #modelname = 'USmodel-n500-mc15-w10-i10-ng5-d10Rand-mem'
-
+    
     print("\n .")
     model = gensim.models.Word2Vec.load(fname+modelname)
     # save memory

@@ -80,8 +80,6 @@ def results_output():
         results.append(dict(name=the_result, web='output?ID='+suggestion, search='output?ID='+suggestion, name2=' ', tweets=' ', orig=' '))
         new_tab = '"_self"'
       
-    # return the results, tab_opening and original term (for the seach box)
-    print(results)
     return render_template("output.html",  results=results, ID=str(orig_sterm), new_tab=new_tab)
       
   
