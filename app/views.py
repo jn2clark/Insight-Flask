@@ -19,12 +19,12 @@ rand_suggestions = get_suggestions()
 @app.route('/')
 def index():
     user = '' # fake user
-    return render_template("index.html",title = 'Home',user = user)
+    return render_template("index.html", title='Home', user=user)
     
 @app.route('/about')
 def about():
     user = '' # fake user
-    return render_template("about.html",title = 'Home',user = user)
+    return render_template("about.html", title='Home', user=user)
 
 @app.route('/output')
 def results_output():
@@ -62,7 +62,7 @@ def results_output():
                 suggestion = '%23'+suggestion[1:]
             # take care of whitespace
             suggestion = suggestion.replace(' ','+')  
-            results.append(dict(name=the_result, web='output?ID='+suggestion,search ='output?ID='+suggestion,name2 = ' ',tweets = ' ',orig = ' '))
+            results.append(dict(name=the_result, web='output?ID='+suggestion, search='output?ID='+suggestion, name2=' ', tweets=' ', orig=' '))
             # open a new tab
             new_tab = '"_self"'
   
@@ -77,11 +77,11 @@ def results_output():
         # take care of whitespace
         suggestion = suggestion.replace(' ','+')
           
-        results.append(dict(name=the_result, web='output?ID='+suggestion,search ='output?ID='+suggestion,name2 = ' ',tweets = ' ',orig = ' '))
+        results.append(dict(name=the_result, web='output?ID='+suggestion, search='output?ID='+suggestion, name2=' ', tweets=' ', orig=' '))
         new_tab = '"_self"'
       
     # return the results, tab_opening and original term (for the seach box)
     print(results)
-    return render_template("output.html",  results = results,ID=str(orig_sterm),new_tab = new_tab)
+    return render_template("output.html",  results=results, ID=str(orig_sterm), new_tab=new_tab)
       
   

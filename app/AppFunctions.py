@@ -31,14 +31,8 @@ def get_htags_tweets(model,hashtable,sterm):
     # generate holla search urls
     the_searches = output_url_gen(htags)
     
-    # get the tweets - debugging here
-    print(sterm)
-    print(htags)
-    
     # get a random tweet to display from those available
     tweets = [hashtable[key][randint(0,len(hashtable[key])-1)][0] for key in htags]
-    
-    print(tweets)
     
     # now make a dict to hold the htags, urls's etc
     val = 0
@@ -60,8 +54,10 @@ def load_model(fname):
     print("\n Loading model and hashtable (make sure they match!)...")
     # name of the model to use
     # this one is pretty good
-    modelname = 'USmodel-n500-mc15-w10-i10-d5Rand-mem'
-    hashtablename = fname+'USAhtable-short-d5.pkl'
+    #modelname = 'USmodel-n500-mc15-w10-i10-d5Rand-mem'
+    #hashtablename = fname+'USAhtable-short-d5.pkl'
+    modelname = 'USmodel-n200-mc15-w10-i10-ng0-d26Rand'#'USmodel-n500-mc15-w10-i10-ng0-d26Rand'
+    hashtablename = fname+'USAhtable-short-d26.pkl'
 
     #modelname = 'USmodel-n500-mc50-w10-i10-ng5-d10Rand-mem'
     #modelname = 'USmodel-n500-mc15-w10-i10-ng5-d10Rand-mem'
@@ -70,10 +66,11 @@ def load_model(fname):
     # this looks pretty god too
     #modelname = 'USmodel-n500-mc15-w10-i10-ng5-d10Rand-mem'
 
+    print("\n .")
     model = gensim.models.Word2Vec.load(fname+modelname)
     # save memory
     model.init_sims(replace=True)
-   
+    print("\n ...")
     hashtable = load_object(hashtablename)
     print("\n Finished...")
     return model,hashtable
